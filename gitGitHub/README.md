@@ -1,1 +1,2 @@
-Meu primeiro README
+* Meu README do curso alura
+
