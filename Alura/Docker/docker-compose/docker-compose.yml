@@ -1,0 +1,39 @@
+version: '3.8' # Versão do Compose
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: 
+    environment:
+      MYSQL_ROOT_PASSWORD: senha_root
+      MYSQL_DATABASE: nome_banco
+      MYSQL_USER: nome_usuario
+      MYSQL_PASSWORD: senha_usuario
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    container_name: nome_container_postgres
+    environment:
+      POSTGRES_USER: nome_usuario
+      POSTGRES_PASSWORD: senha_usuario
+      POSTGRES_DB: nome_banco
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: nome_container_portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
